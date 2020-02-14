@@ -1,0 +1,31 @@
+{
+  "name": "Lithograph",
+  "version": "0.0.1",
+  "description": "Render Markdown in the browser but NOT as a slide",
+  "main": "index",
+  "scripts": {
+    "start": "tsc && node dist/index.js",
+    "quick": "ts-node --transpile-only src/index.ts"
+  },
+  "author": "Tom Nurkkala",
+  "license": "MIT",
+  "dependencies": {
+    "bulma": "^0.8.0",
+    "rehype-add-classes": "^1.0.0",
+    "rehype-document": "^3.2.1",
+    "rehype-format": "^3.0.0",
+    "rehype-highlight": "^3.1.0",
+    "rehype-stringify": "^6.0.1",
+    "remark-containers": "^1.1.2",
+    "remark-parse": "^7.0.2",
+    "remark-rehype": "^5.0.0",
+    "to-vfile": "^6.0.0",
+    "unified": "^8.4.2",
+    "vfile-reporter": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.1",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.5"
+  }
+}

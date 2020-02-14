@@ -1,0 +1,7 @@
+.idea/
+dist/
+node_modules/
+src/*.png
+src/*.jpg
+foo*
+src/*.html
