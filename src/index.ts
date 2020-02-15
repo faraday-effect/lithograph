@@ -1,25 +1,80 @@
 import unified from "unified";
+import removePosition from "unist-util-remove-position";
+import mapTree from "unist-util-map";
+import { Literal, Node } from "unist";
 
 import toVfile from "to-vfile";
 import vfileReporter from "vfile-reporter";
+import { VFile } from "vfile";
 
+import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-import remarkMath from "remark-math";
+import remarkFrontmatter from "remark-frontmatter";
 
 import rehypeAddClasses from "rehype-add-classes";
-import rehypeContainers from "remark-containers";
 import rehypeDocument from "rehype-document";
 import rehypeFormat from "rehype-format";
 import rehypeHighlight from "rehype-highlight";
-import rehypeStringify from "rehype-stringify";
 import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
+import rehypeStringify from "rehype-stringify";
+
+import YAML from "yaml";
+
+function visitPlugin() {
+  return function(tree: Node) {
+    console.dir(removePosition(tree, true), { depth: null });
+  };
+}
+
+interface FrontMatter {
+  title: string;
+  authors: string[];
+  course: string;
+  semester: string;
+}
+
+function titlePage(frontMatter: FrontMatter) {
+  return `
+<section class="hero is-info is-large">
+  <div class="hero-head"/>
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">${frontMatter.title}</h1>
+      <h2 class="subtitle">${frontMatter.course}</h2>
+      <h2 class="subtitle">${frontMatter.semester}</h2>
+      <h2 class="subtitle">${frontMatter.authors.join(", ")}</h2>
+    </div>
+  </div>
+  <div class="hero-foot"/>
+</section>
+`;
+}
+
+function frontmatterPlugin() {
+  return function(tree: Node) {
+    return mapTree(tree, (node: Node) => {
+      if (node.type === "yaml") {
+        const value = (node as Literal).value as string;
+        const frontMatter = YAML.parse(value);
+        return {
+          type: "html",
+          value: titlePage(frontMatter)
+        };
+      } else {
+        return node;
+      }
+    });
+  };
+}
 
 unified()
   .use(remarkParse)
+  .use(remarkFrontmatter)
+  .use(frontmatterPlugin)
   .use(remarkMath)
-  .use(rehypeContainers)
+  .use(visitPlugin)
   .use(remarkRehype, { allowDangerousHTML: true })
   .use(rehypeRaw)
   .use(rehypeHighlight)
@@ -38,7 +93,10 @@ unified()
   })
   .use(rehypeFormat)
   .use(rehypeStringify)
-  .process(toVfile.readSync("src/numbers.md"), function(err, file) {
+  .process(toVfile.readSync("src/numbers.md"), function(
+    err: Error | null,
+    file: VFile
+  ) {
     if (err) {
       throw err;
     }

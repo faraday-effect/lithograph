@@ -1,14 +1,15 @@
-::: section section
-::: div container
-::: div content
+---
+title: Everything is a Number
+authors:
+  - Tom Nurkkala
+  - Jonathan Geisler
+course: COS 284&mdash;Introduction to Computer Systems
+semester: Spring 2020
+---
 
-# Everything is a Number
-
-## COS 284
-
-## Jonathan Geisler | Tom Nurkkala
-
-## Spring 2020
+<section class="section">
+<div class="container">
+<div class="content">
 
 # Electronic Signal
 
@@ -199,6 +200,6 @@ C has six operators that deal with individual **bits**
 | Right shift        | `1010 0011 >> 3`              | `0001 0100` |
 | Bitwise complement | `~ 1010 0011`                 | `0101 1100` |
 
-:::
-:::
-:::
+</div>
+</div>
+</section>
