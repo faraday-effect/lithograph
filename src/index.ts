@@ -1,16 +1,17 @@
 import unified from "unified";
-import removePosition from "unist-util-remove-position";
-import mapTree from "unist-util-map";
 import { Literal, Node } from "unist";
+import inspectTree from "unist-util-inspect";
+import mapTree from "unist-util-map";
+import removePosition from "unist-util-remove-position";
 
 import toVfile from "to-vfile";
 import vfileReporter from "vfile-reporter";
 import { VFile } from "vfile";
 
+import remarkFrontmatter from "remark-frontmatter";
 import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-import remarkFrontmatter from "remark-frontmatter";
 
 import rehypeAddClasses from "rehype-add-classes";
 import rehypeDocument from "rehype-document";
@@ -18,13 +19,14 @@ import rehypeFormat from "rehype-format";
 import rehypeHighlight from "rehype-highlight";
 import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
+import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 
 import YAML from "yaml";
 
-function visitPlugin() {
+function inspectPlugin() {
   return function(tree: Node) {
-    console.dir(removePosition(tree, true), { depth: null });
+    console.log(inspectTree(removePosition(tree)));
   };
 }
 
@@ -37,7 +39,7 @@ interface FrontMatter {
 
 function titlePage(frontMatter: FrontMatter) {
   return `
-<section class="hero is-info is-large">
+<section class="section hero is-info is-large">
   <div class="hero-head"/>
   <div class="hero-body">
     <div class="container">
@@ -74,9 +76,10 @@ unified()
   .use(remarkFrontmatter)
   .use(frontmatterPlugin)
   .use(remarkMath)
-  .use(visitPlugin)
+  .use(inspectPlugin)
   .use(remarkRehype, { allowDangerousHTML: true })
   .use(rehypeRaw)
+  .use(rehypeSlug)
   .use(rehypeHighlight)
   .use(rehypeKatex)
   .use(rehypeDocument, {
