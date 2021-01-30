@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>A Lecture</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+  </head>
+  <body>
+    <section class="section hero is-info is-large">
+      <div class="hero-head">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title title" id="everything-is-a-number">Everything is a Number</h1>
+            <h2 class="subtitle subtitle" id="cos-284introduction-to-computer-systems">COS 284—Introduction to Computer Systems</h2>
+            <h2 class="subtitle subtitle" id="spring-2020">Spring 2020</h2>
+            <h2 class="subtitle subtitle" id="tom-nurkkala-jonathan-geisler">Tom Nurkkala, Jonathan Geisler</h2>
+          </div>
+        </div>
+        <div class="hero-foot"></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="content">
+          <h1 id="electronic-signal" class="title">Electronic Signal</h1>
+          <p>
+            <img src="electric-signal.png" alt="Electronic Signal">
+          </p>
+          <h1 id="more-than-two-values" class="title">More than two values</h1>
+          <ul>
+            <li>
+              <p>Binary <span class="math math-inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                          <mrow>
+                            <mo>⇒</mo>
+                          </mrow>
+                          <annotation encoding="application/x-tex">\Rightarrow</annotation>
+                        </semantics>
+                      </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">⇒</span></span></span></span></span> 0 and 1 only. How do we get more values?</p>
+            </li>
+            <li>
+              <p>
+                How do humans write the value for one million? Do we
+                have a special symbol for it?
+              </p>
+            </li>
+            <li>
+              <p>We can do the same with our binary symbols:</p>
+              <div class="math math-display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                          <mrow>
+                            <mn>10</mn>
+                            <msub>
+                              <mn>0</mn>
+                              <mn>10</mn>
+                            </msub>
+                            <mo>=</mo>
+                            <mn>1</mn>
+                            <mo>×</mo>
+                            <mn>1</mn>
+                            <msup>
+                              <mn>0</mn>
+                              <mn>2</mn>
+                            </msup>
+                            <mo>+</mo>
+                            <mn>0</mn>
+                            <mo>×</mo>
+                            <mn>1</mn>
+                            <msup>
+                              <mn>0</mn>
+                              <mn>1</mn>
+                            </msup>
+                            <mo>+</mo>
+                            <mn>0</mn>
+                            <mo>×</mo>
+                            <mn>1</mn>
+                            <msup>
+                              <mn>0</mn>
+                              <mn>0</mn>
+                            </msup>
+                            <mo>=</mo>
+                            <mn>100</mn>
+                          </mrow>
+                          <annotation encoding="application/x-tex">100_{10} = 1 \times 10^2 + 0 \times 10^1 + 0 \times 10^0= 100</annotation>
+                        </semantics>
+                      </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.79444em;vertical-align:-0.15em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.9474379999999999em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.9474379999999999em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8641079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span></span></span></span></span></div>
+              <div class="math math-display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                          <mrow>
+                            <mn>10</mn>
+                            <msub>
+                              <mn>0</mn>
+                              <mn>2</mn>
+                            </msub>
+                            <mo>=</mo>
+                            <mn>1</mn>
+                            <mo>×</mo>
+                            <msup>
+                              <mn>2</mn>
+                              <mn>2</mn>
+                            </msup>
+                            <mo>+</mo>
+                            <mn>0</mn>
+                            <mo>×</mo>
+                            <msup>
+                              <mn>2</mn>
+                              <mn>1</mn>
+                            </msup>
+                            <mo>+</mo>
+                            <mn>0</mn>
+                            <mo>×</mo>
+                            <msup>
+                              <mn>2</mn>
+                              <mn>0</mn>
+                            </msup>
+                            <mo>=</mo>
+                            <mn>4</mn>
+                          </mrow>
+                          <annotation encoding="application/x-tex">100_2 = 1 \times 2^2 + 0 \times 2^1 + 0 \times 2^0 = 4</annotation>
+                        </semantics>
+                      </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.79444em;vertical-align:-0.15em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.9474379999999999em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.9474379999999999em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8641079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span></span></div>
+            </li>
+            <li>
+              <p>What is 19 in binary?</p>
+            </li>
+          </ul>
+          <h1 id="fractional-values" class="title">Fractional values</h1>
+          <ul>
+            <li>Combining bits together gets us the natural numbers.</li>
+            <li>How do we get fractional values?</li>
+            <li>Again, how do humans write the value for five ninths?</li>
+            <li>
+              We can do the same with our binary values and store a
+              numerator and denominator:
+              <div class="math math-display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                          <mrow>
+                            <mfrac>
+                              <mrow>
+                                <mn>11</mn>
+                                <msub>
+                                  <mn>1</mn>
+                                  <mn>2</mn>
+                                </msub>
+                              </mrow>
+                              <mrow>
+                                <mn>110</mn>
+                                <msub>
+                                  <mn>1</mn>
+                                  <mn>2</mn>
+                                </msub>
+                              </mrow>
+                            </mfrac>
+                            <mo>=</mo>
+                            <mfrac>
+                              <msub>
+                                <mn>7</mn>
+                                <mn>10</mn>
+                              </msub>
+                              <mrow>
+                                <mn>1</mn>
+                                <msub>
+                                  <mn>3</mn>
+                                  <mn>10</mn>
+                                </msub>
+                              </mrow>
+                            </mfrac>
+                          </mrow>
+                          <annotation encoding="application/x-tex">\frac{111_2}{1101_2} = \frac{7_{10}}{13_{10}}</annotation>
+                        </semantics>
+                      </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.1574400000000002em;vertical-align:-0.8360000000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord">1</span><span class="mord">0</span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord">1</span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.1574400000000002em;vertical-align:-0.8360000000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord"><span class="mord">3</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">7</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div>
+            </li>
+          </ul>
+          <h1 id="characters-as-numbers" class="title">Characters as numbers</h1>
+          <ul>
+            <li>What about non-numeric items?</li>
+            <li>How can we store letters?</li>
+            <li>Assign a number to each letter. For example:
+              <pre><code class="hljs language-angelscript">A = <span class="hljs-number">0</span>, B = <span class="hljs-number">1</span>, C = <span class="hljs-number">2</span>, ..., Y = <span class="hljs-number">24</span>, Z = <span class="hljs-number">25</span>
+</code></pre>
+            </li>
+            <li>How many bits do we need for each letter?</li>
+            <li>To communicate, both sides need same letter assignment.</li>
+          </ul>
+          <hr>
+          <p>
+            <img src="ascii-table.png" alt="ASCII Table">
+          </p>
+          <h1 id="text-as-numbers" class="title">Text as numbers</h1>
+          <ul>
+            <li>How do we store words? For example, <code>fun</code>.</li>
+            <li>Can't ask for a generic human solution; there are many</li>
+            <li>How did the Chinese solve this problem?
+              <ul>
+                <li>Computer equivalent: Unicode with >128,000 characters.</li>
+              </ul>
+            </li>
+            <li>How did the English solve this problem?
+              <ul>
+                <li>Computer equivalent: array of characters.</li>
+              </ul>
+            </li>
+            <li><strong>Bonus</strong>: How do we keep track of where the word ends?</li>
+          </ul>
+          <h1 id="images-as-numbers" class="title">Images as numbers</h1>
+          <ul>
+            <li>How do we store pictures?</li>
+          </ul>
+          <p>
+            <img src="worship.jpg" alt="Worship">
+          </p>
+          <h1 id="images-as-numbers-1" class="title">Images as numbers</h1>
+          <ul>
+            <li>What if it is black and white?</li>
+          </ul>
+          <p>![Black-and-white(bNw-pixels.png)</p>
+          <h1 id="images-as-numbers-2" class="title">Images as numbers</h1>
+          <ul>
+            <li>What if it is greyscale?</li>
+          </ul>
+          <p>
+            <img src="grey-pixels.png" alt="Grey scale">
+          </p>
+          <h1 id="images-as-numbers-3" class="title">Images as numbers</h1>
+          <ul>
+            <li>What if it is color?</li>
+          </ul>
+          <p>
+            <img src="color-pixels.jpg" alt="Color">
+          </p>
+          <h1 id="audio-as-numbers" class="title">Audio as numbers</h1>
+          <ul>
+            <li>What about sound?</li>
+            <li>Discretize continuous analog sound by sampling at regular intervals.</li>
+            <li>Sample frequently enough, ears can't tell the difference from a continuous signal</li>
+            <li>Use enough discrete values, ears can't distinguish among them.</li>
+          </ul>
+          <h1 id="audio-as-numbers-1" class="title">Audio as numbers</h1>
+          <p>
+            <img src="digital-audio.png" alt="Digital audio">
+          </p>
+          <h1 id="video-as-numbers" class="title">Video as numbers</h1>
+          <ul>
+            <li>What about video?</li>
+            <li>Already have images and audio
+              <ul>
+                <li>Combine multiple images (array?)</li>
+                <li>Display at specific times</li>
+                <li>Synchronize with audio</li>
+              </ul>
+            </li>
+          </ul>
+          <h1 id="everything-can-be-a-number" class="title">Everything can be a number!</h1>
+          <ul>
+            <li>Equations as numbers: <strong>Mathematica</strong></li>
+            <li>Odors as numbers: <strong>Smell-o-vision</strong></li>
+            <li>Money as numbers: <strong>Bitcoin</strong></li>
+            <li>What else can be represented as a number?</li>
+          </ul>
+          <h1 id="ideas-from-csapp" class="title">Ideas from CS:APP</h1>
+          <h1 id="hexadecimal-notation" class="title">Hexadecimal notation</h1>
+          <p>
+            Trying to keep track of a bunch of bits is hard. For example,
+            write down this value quickly:
+          </p>
+          <pre><code class="hljs language-basic"><span class="hljs-symbol">1011 </span><span class="hljs-number">0101</span> <span class="hljs-number">0010</span> <span class="hljs-number">1101</span> <span class="hljs-number">0001</span> <span class="hljs-number">1010</span> <span class="hljs-number">1100</span> <span class="hljs-number">1010</span>
+</code></pre>
+          <p>Use hexadecimal to group bits:</p>
+          <pre><code class="hljs language-angelscript"><span class="hljs-number">1011</span> <span class="hljs-number">0101</span> <span class="hljs-number">0010</span> <span class="hljs-number">1101</span>   <span class="hljs-number">0001</span> <span class="hljs-number">1010</span> <span class="hljs-number">1100</span> <span class="hljs-number">1010</span>
+   B    <span class="hljs-number">5</span>    <span class="hljs-number">2</span>    D      <span class="hljs-number">1</span>    A    C    A
+</code></pre>
+          <h1 id="hex-conversion" class="title">Hex conversion</h1>
+          <p>How to convert binary to hexadecimal?</p>
+          <ol>
+            <li>Break binary into 4-bit segments (right-to-left!)</li>
+            <li>Transform each segment separately.</li>
+          </ol>
+          <p>In C, a hex value is prefixed by <code>0x</code>; above value would be</p>
+          <pre><code class="hljs language-angelscript"><span class="hljs-number">0xB52D1ACA</span>
+</code></pre>
+          <h1 id="fixed-data-sizes" class="title">Fixed data sizes</h1>
+          <ul>
+            <li>We need to know when a value starts and stops.</li>
+            <li>The computer uses <strong>fixed data sizes</strong>.
+              <ol>
+                <li>32-bit computer most efficient on 32-bit (4-byte) values</li>
+                <li>64-bit computer most efficient on 64-bit (8-byte) values</li>
+              </ol>
+            </li>
+          </ul>
+          <h1 id="fixed-data-sizes-1" class="title">Fixed data sizes</h1>
+          <ul>
+            <li>C doesn't specify mapping between types and sizes.</li>
+            <li>For example, an <code>int</code> is:</li>
+          </ul>
+          <table>
+            <thead>
+              <tr>
+                <th>Machine</th>
+                <th>Bytes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Modern Laptop/desktop</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>Old VAX</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>Old Cray</td>
+                <td>8</td>
+              </tr>
+            </tbody>
+          </table>
+          <h1 id="byte-ordering" class="title">Byte ordering</h1>
+          <p>Data larger than one byte: what order in RAM?</p>
+          <ol>
+            <li>Big endian
+              <ul>
+                <li>Most significant byte (MSB) at <em>lowest</em> address</li>
+                <li>Most "natural" way (matches how we write binary)</li>
+              </ul>
+            </li>
+            <li>Little endian
+              <ul>
+                <li>MSB at <em>highest</em> address</li>
+                <li>Intel x86 - Important for labs!</li>
+              </ul>
+            </li>
+          </ol>
+          <h1 id="endian-example" class="title">Endian example</h1>
+          <p>For base address <code>addr</code></p>
+          <table>
+            <thead>
+              <tr>
+                <th>Ordering</th>
+                <th align="right"><code>addr+0</code></th>
+                <th align="right"><code>+1</code></th>
+                <th align="right"><code>+2</code></th>
+                <th align="right"><code>+3</code></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Little endian</td>
+                <td align="right"><code>0x78</code></td>
+                <td align="right"><code>0x56</code></td>
+                <td align="right"><code>0x34</code></td>
+                <td align="right"><code>0x12</code></td>
+              </tr>
+              <tr>
+                <td>Big endian</td>
+                <td align="right"><code>0x12</code></td>
+                <td align="right"><code>0x34</code></td>
+                <td align="right"><code>0x56</code></td>
+                <td align="right"><code>0x78</code></td>
+              </tr>
+            </tbody>
+          </table>
+          <h1 id="bitwise-operators" class="title">Bitwise operators</h1>
+          <p>C has six operators that deal with individual <strong>bits</strong></p>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Example</th>
+                <th align="right">Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Bitwise AND</td>
+                <td><code>0011 &#x26; 1010</code></td>
+                <td align="right"><code>0010</code></td>
+              </tr>
+              <tr>
+                <td>Bitwise OR</td>
+                <td><code>0011 | 1010</code></td>
+                <td align="right"><code>1011</code></td>
+              </tr>
+              <tr>
+                <td>Bitwise XOR</td>
+                <td><code>0011 ^ 1010</code></td>
+                <td align="right"><code>1001</code></td>
+              </tr>
+              <tr>
+                <td>Left shift</td>
+                <td><code>1010 0011 &#x3C;&#x3C; 3</code></td>
+                <td align="right"><code>0001 1000</code></td>
+              </tr>
+              <tr>
+                <td>Right shift</td>
+                <td><code>1010 0011 >> 3</code></td>
+                <td align="right"><code>0001 0100</code></td>
+              </tr>
+              <tr>
+                <td>Bitwise complement</td>
+                <td><code>~ 1010 0011</code></td>
+                <td align="right"><code>0101 1100</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

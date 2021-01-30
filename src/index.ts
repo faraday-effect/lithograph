@@ -23,6 +23,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 
 import YAML from "yaml";
+import program from "commander";
 
 function inspectPlugin() {
   return function(tree: Node) {
@@ -71,39 +72,44 @@ function frontmatterPlugin() {
   };
 }
 
-unified()
-  .use(remarkParse)
-  .use(remarkFrontmatter)
-  .use(frontmatterPlugin)
-  .use(remarkMath)
-  .use(inspectPlugin)
-  .use(remarkRehype, { allowDangerousHTML: true })
-  .use(rehypeRaw)
-  .use(rehypeSlug)
-  .use(rehypeHighlight)
-  .use(rehypeKatex)
-  .use(rehypeDocument, {
-    title: "A Lecture",
-    css: [
-      "https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.css",
-      "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css",
-      "https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
-    ]
-  })
-  .use(rehypeAddClasses, {
-    h1: "title",
-    h2: "subtitle"
-  })
-  .use(rehypeFormat)
-  .use(rehypeStringify)
-  .process(toVfile.readSync("src/numbers.md"), function(
-    err: Error | null,
-    file: VFile
-  ) {
-    if (err) {
-      throw err;
-    }
-    console.error(vfileReporter(file));
-    file.extname = ".html";
-    toVfile.writeSync(file);
-  });
+function processMarkdown(fileName: string) {
+  unified()
+    .use(remarkParse)
+    .use(remarkFrontmatter)
+    .use(frontmatterPlugin)
+    .use(remarkMath)
+    // .use(inspectPlugin)
+    .use(remarkRehype, { allowDangerousHTML: true })
+    .use(rehypeRaw)
+    .use(rehypeSlug)
+    .use(rehypeHighlight)
+    .use(rehypeKatex)
+    .use(rehypeDocument, {
+      title: "A Lecture",
+      css: [
+        "https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.css",
+        "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css",
+        "https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+      ]
+    })
+    .use(rehypeAddClasses, {
+      h1: "title",
+      h2: "subtitle"
+    })
+    .use(rehypeFormat)
+    .use(rehypeStringify)
+    .process(toVfile.readSync(fileName), function(
+      err: Error | null,
+      file: VFile
+    ) {
+      if (err) {
+        throw err;
+      }
+      console.error(vfileReporter(file));
+      file.extname = ".html";
+      toVfile.writeSync(file);
+    });
+}
+
+program.option("-v --verbose", "verbose output").parse(process.argv);
+processMarkdown(program.args[0]);
